@@ -1,0 +1,42 @@
+{:paths ["src" "resource"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        cheshire/cheshire {:mvn/version "5.8.1"}
+        commons-validator/commons-validator {:mvn/version "1.8.0"}
+        tick/tick {:mvn/version "0.5.0"}
+        metadoc/metadoc {:mvn/version "0.2.9"}
+        potemkin/potemkin {:mvn/version "0.4.6"}
+        ;;net.java.dev.jna/jna {:mvn/version "5.13.0"}
+        metosin/malli {:mvn/version "0.13.0"}}
+
+ :aliases
+ {:test
+  {:extra-paths ["test"]
+   :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
+                io.github.cognitect-labs/test-runner
+                {:git/tag "v0.5.1" :git/sha "dfb30dd"}}}
+
+  :cider/nrepl
+  {:extra-deps {nrepl/nrepl                {:mvn/version "1.0.0"}
+                cider/cider-nrepl          {:mvn/version "0.43.0"}
+                com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
+
+   :main-opts ["--main" "nrepl.cmdline"
+               "--middleware" "[cider.nrepl/cider-middleware,portal.nrepl/wrap-portal]"
+               "--interactive"
+               ;; "--port" 50050  ;; To standardize port
+               "-f" "rebel-readline.main/-main"]}
+
+  :codox {:writer metadoc.writers.codox/write-docs
+    ;;      :namespaces [cacd.carbonblack.wecns.core
+    ;;             cacd.carbonblack.wecns.cli-wrap
+    ;; ;;          cacd.carbonblack.wecns.clj_pid
+    ;;           cacd.carbonblack.wecns.helper-utils
+    ;;           cacd.carbonblack.wecns.syslog
+    ;;                        cacd.carbonblack.wecns.cbapi
+    ;;           ]
+
+    ;;      :metadata {:doc/format :markdown}
+    ;;    :source-paths ["src"]
+    ;;    :source-uri "file:///home/cbadmin/wecns/{filepath}#line{line}"
+    ;;    :output-path "metadoc"}}
+          }}}
