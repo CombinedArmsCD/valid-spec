@@ -31,7 +31,7 @@
       (str
         "CreditCardValid? has not been implememted yet.\n Input was :" x))))
 
-(defn DomainValid?
+(defn fn-DomainValid?
   "This takes an input and checks if it is a valid domain.
   Options include if local domains are acceptable.
 
@@ -48,7 +48,7 @@
     (fn [x]
       (.isValid a x))))
 
-(defn UrlValid?
+(defn fn-UrlValid?
   "This takes an input and check if it is a valid domain."
   [& {:keys [schemes local-urls]
       :or {schemes nil local-urls false}}]
@@ -72,11 +72,18 @@
   (let [a (EmailValidator/getInstance)]
     (.isValid a x)))
 
-(defn invoke-private-method
-  [obj fn-name & args]
-  (let [m (first
-            (filter (fn [x]
-                      (.. x getName (equals fn-name)))
-                    (.. obj getClass getDeclaredMethods)))]
-    (. m (setAccessible true))
-    (. m (invoke obj (into-array Object args)))))
+
+;; Comment area
+;; When attempting to access private or protected objects in java.
+;; The function below can work
+(comment
+  ;; (defn invoke-private-method
+  ;; [obj fn-name & args]
+  ;; (let [m (first
+  ;;           (filter (fn [x]
+  ;;                     (.. x getName (equals fn-name)))
+  ;;                   (.. obj getClass getDeclaredMethods)))]
+  ;;   (. m (setAccessible true))
+  ;;   (. m (invoke obj (into-array Object args)))))
+
+)
